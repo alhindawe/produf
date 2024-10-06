@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصوير بطاقة الهوية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            direction: rtl;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
+        #videoElement, #canvas {
+            max-width: 90%;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #captureButtons, #imageNameContainer, #saveContainer {
+            margin: 20px;
+        }
+        #saveImage:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+        /* عناصر الفيديو والـ overlay */
+        #videoContainer {
+            position: relative;
+            display: inline-block;
+        }
+        #videoElement {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        /* زر التقاط الصورة */
+        #takePhotoBtn, #newPhotoBtn, #captureFront, #captureBack, #saveImage {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #takePhotoBtn:hover, #newPhotoBtn:hover, #captureFront:hover, #captureBack:hover, #saveImage:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        #counter {
+            font-size: 20px;
+            margin: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>تصوير بطاقة الهوية</h1>
+
+    <div id="videoContainer" style="display:none;">
+        <video id="videoElement" autoplay></video>
+    </div>
+
+    <div id="counter">عدد الصور الملتقطة: <span id="imageCount">0</span></div>
+
+    <div id="captureButtons">
+        <button id="captureFront">التقاط وجه البطاقة</button>
+        <button id="captureBack" disabled>التقاط ظهر البطاقة</button>
+    </div>
+
+    <!-- زر التقاط الصورة -->
+    <div id="takePhotoContainer" style="display:none;">
+        <button id="takePhotoBtn">التقاط الصورة</button>
+        <button id="newPhotoBtn" style="display:none;">التقاط صورة جديدة</button>
+    </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <div id="imageNameContainer" style="display:none;">
+        <input type="text" id="imageName" placeholder="أدخل اسم الصورة">
+    </div>
+    <div id="saveContainer" style="display:none;">
+        <button id="saveImage" disabled>حفظ الصورة</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
